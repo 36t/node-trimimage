@@ -19,7 +19,8 @@
     "homepage": "https://github.com/36t/node-trimimage#readme",
     "dependencies": {
         "cli-color": "^2.0.2",
-        "glob": "^8.0.3",
+        "glob": "^7.1.6",
+        "glob-promise": "^4.2.2",
         "inquirer": "^8.2.4",
         "trim-image": "^1.0.3"
     }
