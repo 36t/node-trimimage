@@ -9,10 +9,6 @@ const config = {
     dist: 'dist'
 }
 
-const errorMessage = (message) => {
-    log(clc.redBright(`⛔️ ${message}`));
-}
-
 const isPngImage = (file) => file.match(/\.png$/);
 
 const storePath = (file) => file.split('/').slice(0, -1).join('/');
