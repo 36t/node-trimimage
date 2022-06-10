@@ -16,5 +16,11 @@
     "bugs": {
         "url": "https://github.com/36t/node-trimimage/issues"
     },
-    "homepage": "https://github.com/36t/node-trimimage#readme"
+    "homepage": "https://github.com/36t/node-trimimage#readme",
+    "dependencies": {
+        "cli-color": "^2.0.2",
+        "glob": "^8.0.3",
+        "inquirer": "^8.2.4",
+        "trim-image": "^1.0.3"
+    }
 }
