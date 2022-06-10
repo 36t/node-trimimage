@@ -3,7 +3,7 @@ const imagemin = require('imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 
 const { cleanDirectory } = require('./modules/cleanDirectory.js');
-const { createDirectoryList = require('./modules/createDirectoryList.js');
+const { createDirectoryList } = require('./modules/createDirectoryList.js');
 
 const config = {
     src: 'dist',
