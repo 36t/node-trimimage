@@ -1,4 +1,4 @@
-const glob = require('glob');
+const glob = require('glob-promise');
 const trimImage = require('trim-image');
 const inquirer = require('inquirer');
 const clc = require('cli-color');
@@ -17,51 +17,52 @@ const isPngImage = (file) => file.match(/\.png$/);
 
 const storePath = (file) => file.split('/').slice(0, -1).join('/');
 
-inquirer
-    .prompt([
-        {
-            name: 'src',
-            message: 'Please select a source directory: ',
-            default: config.src
-        },
-        {
-            name: 'dist',
-            message: 'Please select a distribution directory: ',
-            default: config.dist
-        }
-    ]).then(answers => {
-
-        const { src, dist } = answers;
-        const srcPath = `${src}/**/**`;
-
-        glob(srcPath, (error, files) => {
-
-            if (error) {
-                return console.error(error);
+(async () => {
+    inquirer
+        .prompt([
+            {
+                name: 'src',
+                message: 'Please select a source directory: ',
+                default: config.src
+            },
+            {
+                name: 'dist',
+                message: 'Please select a distribution directory: ',
+                default: config.dist
             }
+        ]).then(answers => {
 
-            files.forEach(file => {
-                if (isPngImage(file)) {
+            const { src, dist } = answers;
+            const srcPath = `${src}/**/**`;
 
-                    const targetPath = storePath(file);
-                    const distPath = `${dist}/${targetPath}`;
-                    const distFile = `${dist}/${file}`;
+            glob(srcPath)
+                .then(files => {
 
-                    fs.mkdir(distPath, { recursive: true }, (error) => {
-                        if (error) {
-                            return console.error(error);
+                    files.forEach(file => {
+                        if (isPngImage(file)) {
+
+                            const targetPath = storePath(file);
+                            const distPath = `${dist}/${targetPath}`;
+                            const distFile = `${dist}/${file}`;
+
+                            fs.mkdir(distPath, { recursive: true }, (error) => {
+                                if (error) {
+                                    return console.error(error);
+                                }
+
+                                console.log(clc.blue("Input : "), file);
+                                console.log(clc.blue("Output: "), distFile);
+
+                                trimImage(file, distFile);
+                            });
                         }
-
-                        console.log(clc.blue("Input PNG image: "), file);
-                        console.log(clc.blue("Output PNG image: "), file);
-
-                        trimImage(file, distFile);
                     });
-                }
-            });
+
+
+                });
+            // .finally(() => {
+            //     console.log(clc.yellow("Finished trim images: "), dist);
+            // })
 
         });
-
-        console.log(clc.blue("Finished trim images: "), dist);
-
-    });
+})()
