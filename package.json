@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "build": "npm run trim && npm run compress",
         "trim": "node ./scripts/trimImage.js",
         "compress": "node ./scripts/compress.js"
     },
