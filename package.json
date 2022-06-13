@@ -28,5 +28,13 @@
         "imagemin-pngquant": "^9.0.2",
         "inquirer": "^8.2.4",
         "trim-image": "^1.0.3"
+    },
+    "devDependencies": {
+        "eslint": "^8.17.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-n": "^15.2.2",
+        "eslint-plugin-promise": "^6.0.0",
+        "prettier": "^2.6.2"
     }
 }
