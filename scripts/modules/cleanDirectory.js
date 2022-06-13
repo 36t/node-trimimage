@@ -1,5 +1,5 @@
-const fs = require('fs-extra');
-const clc = require('cli-color');
+const fs = require("fs-extra");
+const clc = require("cli-color");
 
 /**
  * 対象ディレクトリ以下のファイル・ディレクトリの削除

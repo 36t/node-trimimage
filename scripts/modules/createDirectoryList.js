@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 /**
  * 対象ディレクトリ以下のディレクトリリスト（サブディレクトリ含む）の生成
