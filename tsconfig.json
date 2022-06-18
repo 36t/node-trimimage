@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-        "module": "CommonJS",
-        "strict": true,
-        "downlevelIteration": true
-    }
-}
