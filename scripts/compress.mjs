@@ -1,16 +1,15 @@
-const clc = require("cli-color");
-const imagemin = require("imagemin");
-const imageminPngquant = require("imagemin-pngquant");
-const inquirer = require("inquirer");
+import clc from "cli-color";
+import imagemin from "imagemin";
+import imageminPngquant from "imagemin-pngquant";
+import inquirer from "inquirer";
 
-const { cleanDirectory } = require("./modules/cleanDirectory.js");
-const { createDirectoryList } = require("./modules/createDirectoryList.js");
+import { removeDirectory } from "./modules/removeDirectory.mjs";
+import { directoryList } from "./modules/directoryList.mjs";
 
 const config = {
-    src: "dist",
+    src: "src",
     dist: "compressed"
 };
-
 
 (async () => {
     inquirer
@@ -29,14 +28,11 @@ const config = {
 
             const { src, dist } = answers;
 
-            // ディレクトリリストの取得
-            const directoryList = createDirectoryList(src);
+            const directories = await directoryList(src);
 
-            // 出力ディレクトリの初期化
-            await cleanDirectory(dist);
+            await removeDirectory(dist);
 
-            // 減色の実行
-            for (const directory of directoryList) {
+            for (const directory of directories) {
                 const distDir = `${dist}/${directory}`;
 
                 const files = await imagemin([`${directory}/*.png`], {
@@ -49,15 +45,16 @@ const config = {
                     ]
                 });
 
+
                 files.map((file) => {
                     return console.log(
-                        clc.blue("Compressed image:"),
+                        clc.blue("🗜️  Compressed image:"),
                         file.destinationPath
                     );
                 });
             }
 
-            console.log(clc.yellow("🎉 Compressed images."));
+            console.log(clc.yellow("🎉 Compressed all images:"), dist);
 
         });
 })();
