@@ -1,4 +1,4 @@
-# trim-images / compress-images use node.js
+# Trim and compress images use node.js
 
 ## About
 
