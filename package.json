@@ -20,7 +20,6 @@
     "homepage": "https://github.com/36t/node-trimimage#readme",
     "dependencies": {
         "cli-color": "^2.0.2",
-        "fs-extra": "^10.1.0",
         "globby": "^13.1.2",
         "imagemin": "^7.0.0",
         "imagemin-pngquant": "^9.0.2",
