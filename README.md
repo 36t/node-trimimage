@@ -5,7 +5,7 @@
 - Remove transparent pixels from png image borders.
 - Compress png image.
 
-## Setup / Command
+## Usage
 
 ```powershell
 # setup
